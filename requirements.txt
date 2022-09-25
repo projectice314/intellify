@@ -3,3 +3,5 @@ requests
 pillow
 openpyxl 
 django-crispy-forms
+tk
+tk-tools
