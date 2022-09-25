@@ -2,3 +2,4 @@ django
 requests
 pillow
 openpyxl 
+django-crispy-forms
