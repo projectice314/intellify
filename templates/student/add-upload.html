@@ -1,0 +1,92 @@
+{% if schoolNavHeader %}
+    {% include 'school/school-header.html' %}
+{% else %}
+    {% include 'teacher/teacher-header.html' %}
+{% endif %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Upload Students</title>
+
+    {% block body %} {% endblock body %}
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Students</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="">Upload</a></li>
+                                <li class="breadcrumb-item active">Students</li>
+                            </ul>
+                        </div>
+                        <div class="col-auto text-right float-right ml-auto">
+                            <a href="{% static 'Students_Add_Template.xlsx' %}" class="btn btn-outline-primary mr-2" download=""><i class="fas fa-download"></i>
+                                Download</a>
+                            <a href="" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card card-table">
+                            <div class="card-body">
+                                <form class="form-group" action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input class="form-control" type="file" accept=".xlsx, .xls" name="student_file" id="student_file" required>
+                                    <br><br><button class="btn btn-primary" type="submit">Upload Students</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="card card-table">
+                            <div class="card-body">
+
+                            <a class="btn btn-secondary" href="{% static 'Students_Add_Template.xlsx' %}"  download="">Download Template</a>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %} <li class="text-danger"> {{message}}</li> {% endfor %}
+            {% endif %}
+
+            <footer>
+                <p>Copyright © 2020 Dreamguys.</p>
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static '/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <script src="{% static '/plugins/datatables/datatables.min.js' %}"></script>
+
+    <script src="{% static '/js/script.js' %}"></script>
+</body>
+
+<!-- Mirrored from preschool.dreamguystech.com/html-template/teachers.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
+
+</html>
+

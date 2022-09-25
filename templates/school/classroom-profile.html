@@ -1,0 +1,158 @@
+{% if schoolNavHeader %}
+    {% include 'school/school-header.html' %}
+{% elif isStudent %}
+{% include 'student/student-header.html' %}
+{% else %}
+    {% include 'teacher/teacher-header.html' %}
+{% endif %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Classroom</title>
+
+    {% block body %} {% endblock body %}
+
+
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="page-title">Classroom Profile</h3>
+                            <!-- <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="teachers.html">Teachers</a></li>
+                                <li class="breadcrumb-item active">Teachers Details</li>
+                            </ul> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="about-info">
+                                    <h4>Student</h4>
+                                    <div class="media mt-3">
+                                        <div class="media-body">
+                                            <ul>
+                                                <li>
+                                                    <span class="title-span">Classroom : </span>
+                                                    <span class="info-span">{{classroom}}</span>
+                                                </li>
+                                                 <li>
+                                                    <span class="title-span">Class : </span>
+                                                    <span class="info-span">{{classroom.standard}}</span>
+                                                </li>
+                                                <li>
+                                                    <span class="title-span">Section : </span>
+                                                    <span class="info-span">{{classroom.section}}</span>
+                                                </li>
+                                                <li>
+                                                    <span class="title-span">Classroom ID : </span>
+                                                    <span class="info-span">{{classroom.classroom_id}}</span>
+                                                </li>
+                                     
+                                                <hr>
+                                             
+                                               
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="row follow-sec">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="blue-box">
+                                                <h3>50</h3>
+                                                <p>Students</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="blue-box">
+                                                <h3>8</h3>
+                                                <p>Teachers</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="blue-box">
+                                                <h3>6</h3>
+                                                <p>Subjects</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <div class="skill-info">
+                        
+
+
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <h5 class="mb-3">Subjects</h5>
+                                            {% for i in classroom.subject_list.all %}
+                                            <span class="mr-3"><b>{{i}}</b></span> 
+                                            {% endfor %}
+                                        </div>
+                                        
+                                    </div>
+                                    <hr>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <h5>Teachers</h5>
+                                            {% for h in classroom.classroommodel.all %}
+                                                <p class="mt-2">{{h.full_name}}</p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <h5>Students</h5>
+                                            {% for k in classroom.student_classroom.all %}
+                                                <p class="mt-2">{{k.full_name}}</p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <br>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <p>Copyright © 2022 Intellify.</p>
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <script data-cfasync="false" src="{% static '../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static '/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <script src="{% static '/js/script.js' %}"></script>
+</body>
+
+<!-- Mirrored from preschool.dreamguystech.com/html-template/teacher-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
+
+</html>

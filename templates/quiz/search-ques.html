@@ -1,0 +1,219 @@
+{% if schoolNavHeader %}
+{% include 'school/school-header.html' %}
+{% else %}
+{% include 'teacher/teacher-header.html' %}
+{% endif %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Create Quiz</title>
+
+    {% block body %} {% endblock body %}
+
+    <div class="page-wrapper">
+        <div class="content">
+
+            
+
+
+            <form class="d-flex" role="search">
+                <input class="form-control me-1 mx-2" onkeyup="filterSelectQuestions();" id="query_qs" type="search"
+                    placeholder="Search" name="qs" aria-label="Search" required>
+                <a class="btn-lg btn-primary" href="/quiz/profile?quiz_id={{quiz_id}}">Create Quiz</a>
+            </form>
+
+            
+            <div class="d-flex justify-content-between">
+                
+                <div id="accord" class="accordion accordion-flush w-50 p-2" id="accordionFlushExample">
+                    {% for x in questions %}
+        
+                    <div class="accordion-item" method="post"> 
+                        <h2 class="accordion-header d-flex" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                {{x}}
+                            </button>
+                            <div class="text-right">
+                                <div class="actions mt-3">
+                                    <!-- Submitting form -->
+
+                                    <button type="submit" onclick="addQuestionToQuiz('{{x.uid}}');" class="btn btn-sm bg-success text-white mr-2">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul class="d-flex justify-content-between" style="margin-right: 3rem;">
+                                        
+                                        {% for i in x.get_answers %}
+                                        <li> <b>{{i.answer}} </b> </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+
+                    {% endfor %}
+
+            
+         
+                </div>
+
+                <!-- <li><h4>Selected Questions</h4></li> -->
+                <ul class="list-group w-50 p-2" id="sltcdBox">
+                    
+                </ul>
+            </div>
+     
+        </div>
+    </div>
+    </div>
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="{% static '/js/script.js' %}"></script>
+
+    <script>
+
+        const quiz_uid =  "{{quiz_id}}";
+        rightSelectedBox();
+    
+        function filterSelectQuestions(){
+            let qs = document.getElementById("query_qs").value;
+
+            $.ajax({
+                type: "GET",
+                url: "/quiz/api/select-questions",
+                data: {
+                    'qs' : qs,
+                },
+                success: function(msg){
+                    let obj = JSON.stringify(msg)
+                    let response = JSON.parse(obj);
+                    //console.log(response);
+                    // response VARIABLE HAVE ALL THE DATA (CODE HERE)
+
+                    if (response.data.length != 0) {
+                        let res = response.data;
+                        accord = document.getElementById("accord")
+                        accord.innerHTML = ''
+                        for(var i=0; i<res.length; i++){
+                            accord.innerHTML += `
+                            <div class="accordion-item">
+                                <h2 class="accordion-header d-flex" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne"> ${res[i].question}
+                                    </button>
+                                    <div class="text-right">
+                                        <div class="actions mt-3">
+                                            <!-- Submitting form -->
+                                            <button type="submit" onclick="addQuestionToQuiz('${res[i].question_id}');" class="btn btn-sm bg-success text-white mr-2">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul class="d-flex justify-content-between" style="margin-right: 3rem;">
+                                            <li> <b>1. </b> ${res[i].answers[0].answer}</li>
+                                            <li> <b>2. </b> ${res[i].answers[1].answer}</li>
+                                            <li> <b>3. </b> ${res[i].answers[2].answer}</li>
+                                            <li> <b>4. </b> ${res[i].answers[3].answer}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>` ;
+                        }                    
+                    }
+                }
+            });
+
+        }
+
+        function addQuestionToQuiz(question_uid){
+            $.ajax({
+                type: "GET",
+                url: "/quiz/api/add-quiz-question",
+                data: {
+                    'quiz_uid' : quiz_uid,
+                    'question_uid' : question_uid,
+                },
+                success: function(msg){
+                    let obj = JSON.stringify(msg)
+                    let response = JSON.parse(obj);
+                    console.log(response);
+                    rightSelectedBox();
+                }
+            });
+        }
+
+        function delQuestionFromQuiz(question_uid){
+            $.ajax({
+                type: "GET",
+                url: "/quiz/api/del-quiz-question",
+                data: {
+                    'quiz_uid' : quiz_uid,
+                    'question_uid' : question_uid,
+                },
+                success: function(msg){
+                    let obj = JSON.stringify(msg)
+                    let response = JSON.parse(obj);
+                    console.log(response);
+                    rightSelectedBox();
+                }
+            });
+        }
+
+        function rightSelectedBox(){
+            $.ajax({
+                type: "GET",
+                url: "/quiz/api/get-quiz-questions",
+                data: {
+                    'quiz_uid' : quiz_uid,
+                },
+                success: function(msg){
+                    //console.log(msg)
+                    let obj = JSON.stringify(msg)
+                    let response = JSON.parse(obj);
+                    //console.log(response);
+
+                    if (response.data.length != 0) {
+                        let res = response.data;
+                        accord = document.getElementById("sltcdBox");
+                        accord.innerHTML = ''
+                        for(var i=0; i<res.length; i++){
+                            accord.innerHTML += `<li class="list-group-item">${res[i].question}
+                                <a href="#" class="btn btn-sm bg-danger " onclick="delQuestionFromQuiz('${res[i].question_id}');">
+                                    <i class="fas fa-trash"></i>
+                                </a> ${i}
+                            </li>` ;
+                        }                    
+                    }
+                }
+            });
+        }
+    </script>
+
+    </body>
+    <!-- Mirrored from preschool.dreamguystech.com/html-template/add-student.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
+
+</html>

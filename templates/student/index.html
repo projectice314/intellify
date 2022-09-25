@@ -1,0 +1,392 @@
+{% include 'student/student-header.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from preschool.dreamguystech.com/html-template/teacher-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:40 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Student | Intellify</title>
+
+
+    {% block body %} {% endblock body %}
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="rankLeaderBoard" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Rank Leaderboard</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Name</th>
+                                    <th>Coins</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Wasif Naddem</td>
+                                    <td>1170 iCoins</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Ayon Samajder</td>
+                                    <td>1123 iCoins</td>
+                                </tr>
+                                <tr class="text-info">
+                                    <td>3 (You)</td>
+                                    <td>{{student}}</td>
+                                    <td>1107 iCoins</td>
+                                </tr>
+
+                                <tr>
+                                    <td>4</td>
+                                    <td>Biswa Sarkar</td>
+                                    <td>1102 iCoins</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 class="page-title">Welcome {{student}}!</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Student Dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                    <div class="card bg-nine w-100">
+                        <div class="card-body">
+                            <div class="db-widgets d-flex justify-content-between align-items-center">
+                                <div class="db-icon">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <div class="db-info">
+                                    <h3>04/06</h3>
+                                    <h6>All Courses</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                    <div class="card bg-six w-100">
+                        <div class="card-body">
+                            <div class="db-widgets d-flex justify-content-between align-items-center">
+                                <div class="db-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="db-info">
+                                    <h3>40/60</h3>
+                                    <h6>All Projects</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                    <div class="card bg-ten w-100">
+                        <div class="card-body">
+                            <div class="db-widgets d-flex justify-content-between align-items-center">
+                                <div class="db-icon">
+                                    <i class="fas fa-clipboard-list"></i>
+                                </div>
+                                <div class="db-info">
+                                    <h3>30/50</h3>
+                                    <h6>Test Attended</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                    <div class="card bg-eleven w-100">
+                        <div class="card-body">
+                            <div class="db-widgets d-flex justify-content-between align-items-center">
+                                <div class="db-icon">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </div>
+                                <div class="db-info">
+                                    <h3>15/20</h3>
+                                    <h6>Test Passed</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12 col-lg-12 col-xl-9">
+                    <div class="card flex-fill">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <h5 class="card-title">Ongoing Topics</h5>
+                                </div>
+                                <div class="col-6">
+                                    <span class="float-right view-link"><a href="#">View All</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dash-circle">
+                            <div class="row">
+                                <div class="col-12 col-lg-6 col-xl-6 dash-widget3">
+                                    <div class="card-body dash-widget1">
+                                        <div class="circle-bar circle-bar2">
+                                            <div class="circle-graph2" data-percent="20">
+                                                <b>20%</b>
+                                            </div>
+                                            <h6>Lesson Learned</h6>
+                                            <h4>10 <span>/ 50</span></h4>
+                                        </div>
+                                        <div class="dash-details">
+                                            <h4>Integration</h4>
+                                            <ul>
+                                                <li><i class="fas fa-clock"></i> 10am - 11am</li>
+                                                <li><i class="fas fa-book-open"></i> 5 Chapters</li>
+                                                <li><i class="fas fa-hourglass-end"></i> 60 Minutes</li>
+                                                <li><i class="fas fa-clipboard-check"></i> 5 Asignments</li>
+                                            </ul>
+                                            <div class="dash-btn">
+                                                <button type="submit" class="btn btn-info btn-border">Quiz</button>
+                                                <button type="submit" class="btn btn-info">Continue</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 col-xl-6 dash-widget4">
+                                    <div class="card-body dash-widget1 dash-widget2">
+                                        <div class="circle-bar circle-bar3">
+                                            <div class="circle-graph3" data-percent="50">
+                                                <b>50%</b>
+                                            </div>
+                                            <h6>Lesson Learned</h6>
+                                            <h4>25 <span>/ 50</span></h4>
+                                        </div>
+                                        <div class="dash-details">
+                                            <h4>Modern History</h4>
+                                            <ul>
+                                                <li><i class="fas fa-clock"></i> 11.30am - 12.30pm</li>
+                                                <li><i class="fas fa-book-open"></i> 4 Chapters</li>
+                                                <li><i class="fas fa-hourglass-end"></i> 60 Minutes</li>
+                                                <li><i class="fas fa-clipboard-check"></i> 6 Asignment</li>
+                                            </ul>
+                                            <div class="dash-btn">
+                                                <button type="submit" class="btn btn-info btn-border">Quiz</button>
+                                                <button type="submit" class="btn btn-info">Continue</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-xl-8 d-flex">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col-6">
+                                            <h5 class="card-title">Learning Activity</h5>
+                                        </div>
+                                        <div class="col-6">
+                                            <ul class="list-inline-group text-right mb-0 pl-0">
+                                                <li class="list-inline-item">
+                                                    <div class="form-group mb-0 amount-spent-select">
+                                                        <select class="form-control form-control-sm">
+                                                            <option>Weekly</option>
+                                                            <option>Monthly</option>
+                                                            <option>Yearly</option>
+                                                        </select>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div id="chart-student-graph"></div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-12 col-xl-4 d-flex">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    <h5 class="card-title">Insights</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="teaching-card">
+                                        <ul class="activity-feed">
+                                            <li class="feed-item">
+                                                <span class="feed-text1"><a>Integral by parts</a></span>
+                                                <div class="feed-date1">You need to practice more integral byparts</div>
+                                                <p class="text-danger">Top 20%</span>
+                                            </li>
+                                            <li class="feed-item">
+                                                <span class="feed-text1"><a>MS Excel</a></span>
+                                                <div class="feed-date1">You scored very good. Try advance topics</div>
+                                                <p class="text-success">Top 85%</p>
+                                            </li>
+                                            <li class="feed-item">
+                                                <span class="feed-text1"><a>Climate & Weather</a></span>
+                                                <div class="feed-date1">Continue studing weathers</div>
+                                                <p class="text-success">Top 80%</p>
+                                            </li>
+                                            <li class="feed-item">
+                                                <span class="feed-text1"><a>Verbs and Adverbs</a></span>
+                                                <div class="feed-date1">You can start next chapter</div>
+                                                <p class="text-success">Top 93%</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12 col-xl-3 d-flex">
+                    <div class="card flex-fill">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <h5 class="card-title">Today's Classes</h5>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body">
+
+                            <div class="calendar-info calendar-info1">
+
+                                <style>
+                                    .calendar-details p {
+                                        margin-right: 4px;
+                                    }
+                                </style>
+                                <div class="calendar-details">
+                                    <p>BEN </p>
+                                    <h6 class="calendar-blue d-flex justify-content-between align-items-center">
+                                        Bengali <span>09am - 10pm <i class="fas fa-clock"></i> </span></h6>
+                                </div>
+                                <div class="calendar-details">
+                                    <p>MAT </p>
+                                    <h6 class="calendar-violet d-flex justify-content-between align-items-center">
+                                        Math <span>10am - 11am <i class="fas fa-clock"></i> </span></h6>
+                                </div>
+
+                                <div class="calendar-details">
+                                    <p>HIS </p>
+                                    <h6 class="calendar-orange d-flex justify-content-between align-items-center">
+                                        History
+                                        <span>11.30am - 12.30pm <i class="fas fa-clock"></i> </span>
+                                    </h6>
+                                </div>
+                                <div class="calendar-details">
+                                    <p>ENG </p>
+                                    <h6 class="calendar-blue d-flex justify-content-between align-items-center">
+                                        English <span>12.30pm - 1.30pm <i class="fas fa-clock"></i> </span></h6>
+                                </div>
+                                <div class="calendar-details">
+                                    <p>GEO</p>
+                                    <h6 class="calendar-red d-flex justify-content-between align-items-center">
+                                        Geography <span>1.30pm - 2.30pm <i class="fas fa-clock"></i> </span> </h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        <h5 class="card-title">Performance</h5>
+                                    </div>
+                                    <div class="col-6">
+                                        <ul class="list-inline-group text-right mb-0 pl-0">
+                                            <li class="list-inline-item">
+                                                <div class="form-group mb-0 amount-spent-select">
+                                                    <select class="form-control form-control-sm">
+                                                        <option>Weekly</option>
+                                                        <option>Monthly</option>
+                                                        <option>Yearly</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div id="chart-student-graph-bar"></div>
+                            </div>
+                            
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>Copyright © 2022 Intellify.</p>
+        </footer>
+
+    </div>
+    </div>
+
+    
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+    
+    <script src="{% static '/plugins/apexchart/apexcharts.min.js' %}"></script>
+    <script src="{% static '/plugins/apexchart/chart-data.js' %}"></script>
+
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static '/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+
+    <script src="{% static '/plugins/simple-calendar/jquery.simple-calendar.js' %}"></script>
+    <script src="{% static '/js/calander.js' %}"></script>
+
+    <script src="{% static '/js/circle-progress.min.js' %}"></script>
+
+    <script src="{% static '/js/script.js' %}"></script>
+    </body>
+
+    <!-- Mirrored from preschool.dreamguystech.com/html-template/teacher-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:43 GMT -->
+
+</html>

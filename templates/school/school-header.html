@@ -1,0 +1,154 @@
+{% load static %}
+{% load crispy_forms_tags %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<div class="main-wrapper">
+   <div class="header">
+      <div class="header-left">
+         <a href="{% url 'school_home' %}" class="logo d-flex">
+            <img src="{% static 'img/logo-white.jpeg' %}" alt="Logo">
+            <h4 class="text-dark my-2 mx-2">I n t e l l i f y</h4>
+         </a>
+         <a href="{% url 'school_home' %}" class="logo logo-small">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" width="30" height="30">
+         </a>
+      </div>
+      <a href="javascript:void(0);" id="toggle_btn">
+         <i class="fas fa-align-left"></i>
+      </a>
+      <div class="top-nav-search">
+         <form action="/school/search/" method="GET">
+            <input name="q" type="text" class="form-control" placeholder="Search here" required>
+            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+         </form>
+      </div>
+      <a class="mobile_btn" id="mobile_btn" style="margin-top: 16px;">
+         <i class="fas fa-bars"></i>
+      </a>
+      <ul class="nav user-menu">
+         <li class="nav-item dropdown has-arrow">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+               <span class="user-img"><img class="rounded-circle" src="{% static 'img/user.jpg' %}"
+                     width="31" alt="Ryan Taylor"></span>
+            </a>
+            <div class="dropdown-menu">
+               <div class="user-header">
+                  <div class="avatar avatar-sm">
+                     <img src="{% static 'img/user.jpg' %}" alt="User Image"
+                        class="avatar-img rounded-circle">
+                  </div>
+                  <div class="user-text">
+                     <h6> {{request.user.first_name}}</h6>
+                     <p class="text-muted mb-0">School</p>
+                  </div>
+               </div>
+               <!-- <a class="dropdown-item" href="profile.html">My Profile</a>
+               <a class="dropdown-item" href="inbox.html">Inbox</a> -->
+               <a class="dropdown-item" href="{% url 'school_logout' %}">Logout</a>
+            </div>
+         </li>
+      </ul>
+   </div>
+   <div class="sidebar" id="sidebar">
+      <div class="sidebar-inner slimscroll">
+         <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+               <li class="menu-title">
+                  <span>Main Menu</span>
+               </li>
+               <li class="submenu active">
+                  <a href="/school/"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span
+                        class="menu-arrow"></span></a>
+
+                  <ul>
+                     <li><a href="{% url 'school_home' %}" class="active">Dashboard</a>
+                  </ul>
+               </li>
+
+               <li class="submenu">
+                  <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span
+                        class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="/school/subjects">Subject List</a></li>
+                     <li><a href="/school/add-subject">Subject Add</a></li>
+                     <li><a href="#/school/edit-subject">Subject Edit</a></li>
+                  </ul>
+               </li>
+
+               <li class="submenu">
+                  <a href="#"><i class="fas fa-book-reader"></i> <span> Classroom</span> <span
+                        class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'list_classroom' %}">Classroom List</a></li>
+                     <li><a href="{% url 'add-class' %}">Classroom Add</a></li>
+                     <li><a href="#">Classroom Edit</a></li>
+                  </ul>
+               </li>
+
+               
+               <li class="submenu">
+                  <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span
+                        class="menu-arrow"></span></a>
+                  <ul>
+                     <!--Edit/Ayon -->
+                     <li><a href="/teacher/list/">Teacher List</a></li>
+                     <li><a href="/teacher/add?id=">Teacher Add</a></li>
+                     <li><a href="/teacher/add/upload?id=">Upload Teacher</a></li>
+                     <!-- Ayon -->
+                  </ul>
+               </li>
+
+               <li class="submenu">
+                  <a href="#"><i class="fas fa-book-reader"></i> <span> Quiz</span> <span
+                        class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="/quiz/add/">Add Quiz</a></li>
+                     <li><a href="/quiz/list/">Quiz List</a></li>
+                  </ul>
+               </li>
+               
+               <li class="submenu">
+                  <a href="#"><i class="fas fa-book-reader"></i> <span> Questions</span> <span
+                        class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="/quiz/add_ques/">Add Questions</a></li>
+                     <li><a href="/quiz/ques_list/">Questions List</a></li>
+                  </ul>
+               </li>
+
+               
+               <li class="submenu">
+                  <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span
+                        class="menu-arrow"></span></a>
+                  <ul>
+                     <!--Edit/Ayon -->
+                     <li><a href="/student/list/">Student List</a></li>
+                     <li><a href="/student/add?id=">Student Add</a></li>
+                     <li><a href="/student/add/upload?id=">Upload Student</a></li>
+                     <!-- Ayon -->
+                  </ul>
+               </li>
+               
+               
+               <li class="submenu">
+                  <a href="#"><i class="fas fa-building"></i> <span>School Profile</span> <span
+                        class="menu-arrow"></span></a>
+                  <ul>
+                     <li><a href="{% url 'school_profile' %}">Your Profile</a></li>
+                     <li><a href="{% url 'school_profile_add' %}">Edit Profile</a></li>
+                     <!-- <li><a href="edit-department.html">Edit Profile</a></li> -->
+                  </ul>
+               </li>
+
+            </ul>
+         </div>
+      </div>
+   </div>

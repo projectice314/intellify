@@ -1,0 +1,114 @@
+{% include 'school/school-header.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Profile | Intellify</title>
+
+    {% block body %} {% endblock body %}
+
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Your Profile</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">School</a></li>
+                                <li class="breadcrumb-item active">Your Profile</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="form-title"><span>Profile Details</span></h5>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>School ID</label>
+                                                <input type="text" class="form-control" value="{{s_profile.id}}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>School Name</label>
+                                                <input type="text" class="form-control" value="{{request.user.first_name}}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Head of Department</label>
+                                                <input type="text" class="form-control" value="{{s_profile.hod_name}}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>School Entry Date</label>
+                                                <input type="text" class="form-control" value="{{s_profile.date_created}}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Contact Number</label>
+                                                <input type="text" class="form-control" name="phone_no"
+                                                    value="{{s_profile.phone}}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Email Id</label>
+                                                <input type="text" class="form-control" name="email"
+                                                    value="{{request.user.email}}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>No of Students</label>
+                                                <input type="text" class="form-control" value="{{s_profile.students_no}}" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static '/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <script src="{% static '/plugins/datatables/datatables.min.js' %}"></script>
+
+    <script src="{% static '/js/script.js' %}"></script>
+
+
+
+    <!-- <script src="static/plugins/apexchart/apexcharts.min.js"></script> -->
+    <script src="{% static 'plugins/apexchart/apexcharts.min.js' %}"></script>
+    <!-- <script src="static/plugins/apexchart/chart-data.js"></script> -->
+    <script src="{% static 'plugins/apexchart/chart-data.js' %}"></script>
+    
+</body>
+
+</html>

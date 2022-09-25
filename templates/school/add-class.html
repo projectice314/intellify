@@ -1,0 +1,123 @@
+{{% include 'school/school-header.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Add Classroom</title>
+
+    {% block body %} {% endblock body %}
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Add Classroom</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="classrooms.html">Classroom</a></li>
+                            <li class="breadcrumb-item active">Add Classroom</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% if messages %}
+                {% for message in messages %} <li class="text-danger"> {{message}}</li> {% endfor %}
+                {% endif %}
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" method="POST">
+
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="form-title"><span>Classroom Information</span></h5>
+                                    </div>
+
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Standard <span class="text-danger">*</span></label>
+                                            <select name="standard" class="form-control select" id="classes">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Section</label> <span class="text-danger">*</span>
+                                            <input list="sections" name="section" class="form-control" type="text"
+                                                required>
+                                            <datalist id="sections">
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                                <option value="D">D</option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Available Subjects <span class="text-danger">*</span> <span style="font-size: 12px;" class="text-info"> press ctrl while selecting</span></label>
+                                            <select name="subject" class="form-control select" size="3" id="subject" multiple>
+                                                {% for sub in subjects %}
+                                                <option value="{{sub.id}}">{{sub}}</option>
+                                                {% endfor %}
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static '/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <script src="{% static '/plugins/datatables/datatables.min.js' %}"></script>
+
+    <script src="{% static '/js/script.js' %}"></script>
+
+
+
+    <!-- <script src="static/plugins/apexchart/apexcharts.min.js"></script> -->
+    <script src="{% static 'plugins/apexchart/apexcharts.min.js' %}"></script>
+    <!-- <script src="static/plugins/apexchart/chart-data.js"></script> -->
+    <script src="{% static 'plugins/apexchart/chart-data.js' %}"></script>
+    </body>
+
+    <!-- Mirrored from preschool.dreamguystech.com/html-template/add-Classroom.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
+
+</html>

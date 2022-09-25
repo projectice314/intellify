@@ -1,0 +1,135 @@
+{% if schoolNavHeader %}
+    {% include 'school/school-header.html' %}
+{% else %}
+    {% include 'teacher/teacher-header.html' %}
+{% endif %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Create Quiz</title>
+
+    {% block body %} {% endblock body %}
+
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Add Quiz</h3>
+                        <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="">Quiz</a></li>
+                        <li class="breadcrumb-item active">Add Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {% if messages %}
+                                    {% for message in messages %} <li class="text-info"> {{message}}</li> {% endfor %}
+                                {% endif %}
+                        <form method="POST" action="/quiz/add/" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="form-title"><span>Quiz Information</span></h5>
+                                </div>
+
+
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group">
+                                    <label>Quiz Title</label> <span class="text-danger">*</span>
+                                    <input type="text" name="title" class="form-control" required>
+                                    </div>
+                                </div>
+
+           
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                    <label>Classroom</label> <span class="text-danger">*</span>
+                                    <select name="classroom" class="form-control" required>
+                                        <option disabled>Select Classroom</option>
+                                        {% for classroom in classrooms %}
+                                            <option value="{{classroom.id}}">{{classroom.classroom_id}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                    <label>Teacher</label> <span class="text-danger">*</span>
+                                    {% if schoolNavHeader %}
+                                        <select name="teacher" class="form-control" required>
+                                            <option disabled>Select Teacher</option>
+                                            {% for teacher in teachers %}
+                                                <option value="{{teacher.id}}">{{teacher}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    {% else %}
+                                    <select name="teacher" class="form-control" required readonly aria-readonly="true">
+                                        <option value="{{request.user.teacherprofile.id}}" selected aria-readonly="true">{{request.user.teacherprofile}}</option>
+                                    </select>
+                                    {% endif %}
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                    <label>Subject</label> <span class="text-danger">*</span>
+                                    <select name="subject" class="form-control" required {% if not schoolNavHeader %} aria-readonly="true" {%endif%}>
+                                        <option disabled>Select Subject</option>
+                                        {% for subject in subjects %}
+                                            <option value="{% if not schoolNavHeader %}{{subject}}{% else %} {{subject.id}} {%endif%}" {% if not schoolNavHeader %} selected aria-readonly="true" {%endif%} >{{subject}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                </div>
+
+                                
+                                
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                    <label>Time Limit</label> <span class="text-danger">*</span> &nbsp;&nbsp; <span class="text-info">In minutes</span>
+                                    <input name="time_limit" minlength="1" maxlength="3" type="number" class="form-control" required>
+                                    </div>
+                                </div> 
+
+
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                    <label>Quiz Schedule</label> <span class="text-danger">*</span>
+                                    <input name="quiz_schedule" type="datetime-local" class="form-control" required>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Create Quiz & Add Questions</button>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+      <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+      <script src="{% static '/js/popper.min.js' %}"></script>
+      <script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+      <script src="{% static '/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+      <script src="{% static '/js/script.js' %}"></script>
+   </body>
+   <!-- Mirrored from preschool.dreamguystech.com/html-template/add-student.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
+</html>

@@ -1,0 +1,90 @@
+{% include 'school/school-header.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Add Subject</title>
+
+    {% block body %} {% endblock body %}
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Add Subject</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="subjects.html">Subject</a></li>
+                                <li class="breadcrumb-item active">Add Subject</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    {% if messages %}
+                         {% for message in messages %} <li class="text-danger"> {{message}}</li> {% endfor %}
+                     {% endif %}
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="" method="POST">
+
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="form-title"><span>Subject Information</span></h5>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Subject Name</label>
+                                                <input type="text" name="subject_name" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Stream</label>
+                                                <input type="text" name="subject_stream" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  
+    <!-- <script src="static/plugins/apexchart/apexcharts.min.js"></script> -->
+    <script src="{% static 'plugins/apexchart/apexcharts.min.js' %}"></script>
+    <!-- <script src="static/plugins/apexchart/chart-data.js"></script> -->
+    <script src="{% static 'plugins/apexchart/chart-data.js' %}"></script>
+
+    <script src="{% static '/js/jquery-3.6.0.min.js' %}"></script>
+
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static '/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <script src="{% static '/plugins/datatables/datatables.min.js' %}"></script>
+
+    <script src="{% static '/js/script.js' %}"></script>
+</body>
+
+<!-- Mirrored from preschool.dreamguystech.com/html-template/add-subject.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
+
+</html>
