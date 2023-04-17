@@ -35,4 +35,9 @@ class student_profile(models.Model):
 
     def __str__(self) :
         return self.full_name
+    
+    def get_dob(self):
+        return self.dob.strftime("%d-%m-%Y")
+    
+
 
